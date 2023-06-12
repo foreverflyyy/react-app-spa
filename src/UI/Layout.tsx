@@ -1,12 +1,13 @@
 import {Outlet} from "react-router-dom";
+import Header from "./Header";
 
-const Layout = () => {
+function Layout() {
     return (
         <>
-            <div style={{paddingBottom: 10}}>Layout</div>
+            <Header/>
             <Outlet/>
         </>
     );
-};
+}
 
 export default Layout;
