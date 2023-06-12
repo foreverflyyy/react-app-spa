@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
+import InputGroup from 'react-bootstrap/InputGroup';
 import useDebounce from "../hooks/useDebounce";
 
 interface SearchFormProps {
@@ -20,15 +21,18 @@ const SearchForm = ({ searchByTitle }: SearchFormProps) => {
         <Form>
             <Row className="mb-3">
                 <Form.Group className="mb-3" controlId="formGroupEmail">
-                    <Form.Label>Search by title:</Form.Label>
-                    <Form.Control
-                        type="search"
-                        placeholder="Search"
-                        className="me-2"
-                        aria-label="Search"
-                        value={textSearch}
-                        onChange={e => setTextSearch(e.target.value)}
-                    />
+                    <Form.Label style={{fontSize: 20, fontWeight: 'bold'}}>Search by title:</Form.Label>
+                    <br />
+                    <InputGroup size="lg">
+                        <Form.Control
+                            type="search"
+                            aria-label="Search:"
+                            placeholder="Search..."
+                            aria-describedby="inputGroup-sizing-sm"
+                            value={textSearch}
+                            onChange={e => setTextSearch(e.target.value)}
+                        />
+                    </InputGroup>
                 </Form.Group>
             </Row>
         </Form>

@@ -17,14 +17,14 @@ function Header() {
                     >
                         <Offcanvas.Header closeButton>
                             <Offcanvas.Title id={`nameNavbarLabel-expand-xxl`}>
-                                (аватар) Никита
+                                (avatar) Nikita
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
                                 <Nav.Link href="/posts">nikita.ushakov.02@outlook.com</Nav.Link>
-                                <Nav.Link href="/posts">Список постов</Nav.Link>
-                                <Nav.Link href="/about">Обо мне</Nav.Link>
+                                <Nav.Link href="/posts">List of Posts</Nav.Link>
+                                <Nav.Link href="/about">About me</Nav.Link>
                             </Nav>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
