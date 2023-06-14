@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
+import {Link} from "react-router-dom";
 
 function Header() {
     return (
@@ -22,14 +23,14 @@ function Header() {
                                 <Image src="https://mdbootstrap.com/img/new/standard/city/041.webp" rounded fluid />
                             </Col>
                             <Offcanvas.Title id={`nameNavbarLabel-expand-xxl`}>
-                                (avatar) Nikita
+                                Nikita
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
-                                <Nav.Link href="/posts">nikita.ushakov.02@outlook.com</Nav.Link>
-                                <Nav.Link href="/posts">List of Posts</Nav.Link>
-                                <Nav.Link href="/about">About me</Nav.Link>
+                                <Link to="/about">nikita.ushakov.02@outlook.com</Link>
+                                <Link to="/posts">List of Posts</Link>
+                                <Link to="/about">About me</Link>
                             </Nav>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
