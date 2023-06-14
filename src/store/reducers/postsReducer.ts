@@ -1,5 +1,6 @@
 import IPost from "../../models/IPost";
-import {GET_POSTS} from "../types";
+import { ActionsPostsTypes } from "../actions/postsActions";
+import {GET_POSTS, HIDE_LOADER, POSTS_FAILED, SHOW_LOADER} from "../types";
 
 interface IPostReducerState {
     posts: IPost[],
@@ -8,21 +9,22 @@ interface IPostReducerState {
 }
 
 const initialState:IPostReducerState  = {
-    posts: [],
+    posts: [] as IPost[],
     isLoading: false,
     error: ''
 }
 
-interface ActionPosts {
-    type: string,
-    payload: IPost[]
-}
-
-export const postsReducer = (state = initialState, action: ActionPosts) => {
+export const postsReducer = (state = initialState, action: ActionsPostsTypes) => {
     switch (action.type) {
-        case GET_POSTS:
+      case GET_POSTS:
             return {...state, posts: action.payload };
-        default:
-            return state;
+      case SHOW_LOADER:
+         return {...state, isLoading: action.payload };
+      case HIDE_LOADER:
+         return {...state, isLoading: action.payload };
+      case POSTS_FAILED:
+            return {...state, error: action.payload}
+      default:
+         return state;
     }
 }

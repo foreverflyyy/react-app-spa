@@ -1,49 +1,49 @@
-import React, {useState} from 'react';
+import { useState } from 'react';
 import Button from "react-bootstrap/Button";
-import {fetchComments} from "../store/actions/postsActions";
+import { fetchComments } from "../store/actions/commentsActions";
 import IPost from "../models/IPost";
-import {useAppDispatch, useAppSelector} from "../hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import ListComments from "./ListComments";
 
 interface ListCommentsProps {
-    post: IPost
+   post: IPost
 }
 
-const SectionComments = ({post}: ListCommentsProps) => {
+const SectionComments = ({ post }: ListCommentsProps) => {
 
-    const [visibleComments, setVisibleComments] = useState(false);
-    const {commentsByPost, isLoading, error} = useAppSelector(state => state.comment)
-    const dispatch = useAppDispatch();
+   const [visibleComments, setVisibleComments] = useState(false);
+   const { commentsByPost, isLoading, error } = useAppSelector(state => state.comment)
+   const dispatch = useAppDispatch();
 
-    const handlerGetComments = () => {
-        if(!visibleComments)
-            dispatch(fetchComments(post.id.toString()));
+   const handlerGetComments = () => {
+      if (!visibleComments)
+         dispatch(fetchComments(post.id.toString()));
 
-        setVisibleComments(!visibleComments);
-    }
+      setVisibleComments(!visibleComments);
+   }
 
-    const handlerGetCommentsAgain = () => {
-        dispatch(fetchComments(post.id.toString()));
-    }
+   const handlerGetCommentsAgain = () => {
+      dispatch(fetchComments(post.id.toString()));
+   }
 
-    return (
-        <div style={{display: 'flex', flexDirection: 'column'}}>
-            {visibleComments &&
-                <ListComments comments={commentsByPost}/>
+   return (
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+         {visibleComments &&
+            <ListComments comments={commentsByPost} />
+         }
+         <Button
+            style={{ maxWidth: 150, fontSize: 18, marginTop: 10 }}
+            variant="outline-secondary"
+            disabled={isLoading}
+            onClick={handlerGetComments}
+         >
+            {isLoading
+               ? 'Loading…'
+               : (!visibleComments ? 'Comments' : 'Hide')
             }
-            <Button
-                style={{maxWidth: 150, fontSize: 18, marginTop: 10}}
-                variant="outline-secondary"
-                disabled={isLoading}
-                onClick={handlerGetComments}
-            >
-                {isLoading
-                    ? 'Loading…'
-                    : (!visibleComments ? 'Comments' : 'Hide')
-                }
-            </Button>
-        </div>
-    );
+         </Button>
+      </div>
+   );
 };
 
 export default SectionComments;

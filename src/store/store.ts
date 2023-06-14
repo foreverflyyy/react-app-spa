@@ -5,14 +5,14 @@ import {sagaPostsWatcher} from "./saga/postsSaga";
 import thunk from "redux-thunk";
 import {commentsReducer} from "./reducers/commentReducer";
 import {sagaCommentsWatcher} from "./saga/commentsSaga";
-import {appReducer} from "./reducers/appReducer";
+import { userReducer } from "./reducers/userReducer";
 
 const sagaMiddleware = createSagaMiddleware()
 
 const rootReducers = combineReducers({
     posts: postsReducer,
     comment: commentsReducer,
-    app: appReducer
+    user: userReducer
 })
 
 export const store = configureStore({
