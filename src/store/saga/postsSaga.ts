@@ -1,6 +1,5 @@
 import {call, put, takeEvery} from 'redux-saga/effects'
 import {GET_POSTS, POSTS_FAILED, REQUEST_POSTS} from "../types";
-import {hideLoader, showLoader} from "../actions/appActions";
 import IPost from "../../models/IPost";
 
 export function* sagaPostsWatcher() {
@@ -23,6 +22,6 @@ function* getPosts() {
 }
 
 async function fetchPosts() {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/posts`);
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=40`);
     return await response.json()
 }

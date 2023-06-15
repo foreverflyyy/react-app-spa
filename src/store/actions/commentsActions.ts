@@ -1,5 +1,5 @@
 import IComment from "../../models/IComment"
-import { REQUEST_COMMENTS } from "../types"
+import { REQUEST_COMMENTS, REQUEST_POSTS } from "../types"
 
 export interface IFetchComments {
    type: string,
@@ -10,7 +10,14 @@ export interface IFetchComments {
 
 interface ActionGetCommentsByPost {
   type: string,
-  payload: IComment[]
+  payload: boolean;
+}
+
+export const StartActionGetPosts = (): ActionGetCommentsByPost => {
+   return {
+      type: REQUEST_POSTS,
+      payload: true
+   }
 }
 
 interface ActionCommentsFailed {
@@ -18,12 +25,26 @@ interface ActionCommentsFailed {
   payload: string
 }
 
-interface ActionCommentsLoading {
-  type: string,
-  payload: boolean
+export const GetUserOfPostFailed = (error: string): ActionUserOfPostFailed => {
+   return {
+      type: REQUEST_USER_OF_POST_FAILED,
+      payload: error
+   }
 }
 
-export type ActionsCommentsTypes = ActionGetCommentsByPost | ActionCommentsFailed | ActionCommentsLoading;
+interface ActionCommentsSuccess {
+  type: string,
+  payload: IComment[]
+}
+
+export const GetUserOfPostSuccess = (user: IUser): ActionUserOfPostSuccess => {
+   return {
+      type: REQUEST_USER_OF_POST_SUCCESS,
+      payload: user
+   }
+}
+
+export type ActionsCommentsTypes = ActionGetCommentsByPost | ActionCommentsFailed | ActionCommentsSuccess;
 
 export function fetchComments(idPost: string){
    return {

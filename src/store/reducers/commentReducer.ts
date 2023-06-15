@@ -1,4 +1,4 @@
-import {COMMENTS_FAILED, GET_COMMENTS_BY_POST, HIDE_LOADER, SHOW_LOADER} from "../types";
+import {GET_COMMENTS_BY_POST, REQUEST_COMMENTS_FAILED, REQUEST_COMMENTS_SUCCESS} from "../types";
 import IComment from "../../models/IComment";
 import { ActionsCommentsTypes } from "../actions/commentsActions";
 
@@ -17,13 +17,22 @@ const initialState: ICommentsReducerState = {
 export const commentsReducer = (state = initialState, action: ActionsCommentsTypes) => {
     switch (action.type) {
          case GET_COMMENTS_BY_POST:
-            return {...state, commentsByPost: action.payload };
-         case SHOW_LOADER:
-            return {...state, isLoading: action.payload };
-         case HIDE_LOADER:
-            return {...state, isLoading: action.payload };
-         case COMMENTS_FAILED:
-               return {...state, error: action.payload}
+            return {
+               ...state, 
+               isLoading: true 
+            };
+         case REQUEST_COMMENTS_SUCCESS:
+            return {
+               ...state, 
+               commentsByPost: action.payload, 
+               isLoading: false
+            };
+         case REQUEST_COMMENTS_FAILED:
+            return {
+               ...state, 
+               isLoading: false,
+               error: action.payload 
+            };
          default:
             return state;
     }

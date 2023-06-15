@@ -3,7 +3,7 @@ import {REQUEST_POSTS} from "../types";
 
 interface ActionGetPosts {
    type: string,
-   payload: IPost[]
+   payload: boolean
  }
  
  interface ActionPostsFailed {
@@ -11,12 +11,12 @@ interface ActionGetPosts {
    payload: string
  }
  
- interface ActionPostsLoading {
+ interface ActionPostsSuccess {
    type: string,
-   payload: boolean
+   payload: IPost[]
  }
  
- export type ActionsPostsTypes = ActionGetPosts | ActionPostsFailed | ActionPostsLoading;
+ export type ActionsPostsTypes = ActionGetPosts | ActionPostsFailed | ActionPostsSuccess;
 
 export function fetchPosts(){
     return {
