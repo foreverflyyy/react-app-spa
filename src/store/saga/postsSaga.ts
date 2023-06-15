@@ -1,6 +1,7 @@
 import {call, put, takeEvery} from 'redux-saga/effects'
-import {GET_POSTS, POSTS_FAILED, REQUEST_POSTS} from "../types";
+import {REQUEST_POSTS} from "../types";
 import IPost from "../../models/IPost";
+import {ActionGetPostFailed, ActionGetPostsSuccess, StartActionGetPosts} from "../actions/postsActions";
 
 export function* sagaPostsWatcher() {
     yield takeEvery(REQUEST_POSTS, getPosts)
@@ -8,16 +9,14 @@ export function* sagaPostsWatcher() {
 
 function* getPosts() {
     try {
-        yield put(showLoader())
+        yield put(StartActionGetPosts())
         const payload: IPost[] = yield call(fetchPosts)
         setTimeout(async () => {
             console.log('Process going...')
         }, 500)
-        yield put({ type: GET_POSTS, payload})
-        yield put(hideLoader())
-    } catch (e) {
-        yield put({ type: POSTS_FAILED, message: e })
-        yield put(hideLoader())
+        yield put(ActionGetPostsSuccess(payload))
+    } catch (e: any) {
+        yield put(ActionGetPostFailed(e?.message))
     }
 }
 

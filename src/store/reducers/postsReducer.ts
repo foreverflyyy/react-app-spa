@@ -1,6 +1,6 @@
 import IPost from "../../models/IPost";
-import { ActionsPostsTypes } from "../actions/postsActions";
-import {GET_POSTS, REQUEST_COMMENTS_FAILED, REQUEST_COMMENTS_SUCCESS} from "../types";
+import {TypesActionsPosts} from "../actions/postsActions";
+import {REQUEST_COMMENTS_FAILED, REQUEST_COMMENTS_SUCCESS, START_POSTS} from "../types";
 
 interface IPostReducerState {
     posts: IPost[],
@@ -14,9 +14,9 @@ const initialState:IPostReducerState  = {
     error: ''
 }
 
-export const postsReducer = (state = initialState, action: ActionsPostsTypes) => {
+export const postsReducer = (state = initialState, action: TypesActionsPosts) => {
     switch (action.type) {
-      case GET_POSTS:
+      case START_POSTS:
             return {
                ...state, 
                isLoading: true

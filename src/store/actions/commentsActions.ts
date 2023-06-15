@@ -1,50 +1,50 @@
 import IComment from "../../models/IComment"
-import { REQUEST_COMMENTS, REQUEST_POSTS } from "../types"
+import {REQUEST_COMMENTS, REQUEST_COMMENTS_FAILED, REQUEST_COMMENTS_SUCCESS, START_COMMENTS_BY_POST} from "../types"
 
-export interface IFetchComments {
-   type: string,
-   payload: {
-       idPost: string
-   }
+interface IStartActionCommentsByPost {
+    type: string,
+    payload: boolean
 }
 
-interface ActionGetCommentsByPost {
-  type: string,
-  payload: boolean;
-}
-
-export const StartActionGetPosts = (): ActionGetCommentsByPost => {
+export const StartActionCommentsByPost = (): IStartActionCommentsByPost => {
    return {
-      type: REQUEST_POSTS,
-      payload: true
+        type: START_COMMENTS_BY_POST,
+        payload: true
    }
 }
 
-interface ActionCommentsFailed {
+interface IActionCommentsByPostFailed {
   type: string,
   payload: string
 }
 
-export const GetUserOfPostFailed = (error: string): ActionUserOfPostFailed => {
+export const ActionCommentsByPostFailed = (error: string): IActionCommentsByPostFailed => {
    return {
-      type: REQUEST_USER_OF_POST_FAILED,
+      type: REQUEST_COMMENTS_FAILED,
       payload: error
    }
 }
 
-interface ActionCommentsSuccess {
+interface IActionCommentsByPostSuccess {
   type: string,
   payload: IComment[]
 }
 
-export const GetUserOfPostSuccess = (user: IUser): ActionUserOfPostSuccess => {
+export const ActionCommentsByPostSuccess = (comments: IComment[]): IActionCommentsByPostSuccess => {
    return {
-      type: REQUEST_USER_OF_POST_SUCCESS,
-      payload: user
+      type: REQUEST_COMMENTS_SUCCESS,
+      payload: comments
    }
 }
 
-export type ActionsCommentsTypes = ActionGetCommentsByPost | ActionCommentsFailed | ActionCommentsSuccess;
+export type TypesActionsComments = IStartActionCommentsByPost | IActionCommentsByPostFailed | IActionCommentsByPostSuccess;
+
+export interface IFetchComments {
+    type: string,
+    payload: {
+        idPost: string
+    }
+}
 
 export function fetchComments(idPost: string){
    return {

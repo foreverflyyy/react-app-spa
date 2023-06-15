@@ -1,11 +1,11 @@
 import {call, put, takeEvery} from "redux-saga/effects";
 import {REQUEST_USER_OF_POST} from "../types";
-import { IUser } from "../../models/IUser";
-import { 
-   GetUserOfPostFailed, 
-   GetUserOfPostSuccess, 
-   IFetchUser, 
-   StartActionGetUserOfPost 
+import {IUser} from "../../models/IUser";
+import {
+    ActionUserOfPostFailed,
+    ActionUserOfPostSuccess,
+    IFetchUser,
+    StartActionUserOfPost
 } from "../actions/userActions";
 
 export function* sagaCommentsWatcher() {
@@ -14,14 +14,14 @@ export function* sagaCommentsWatcher() {
 
 function* getUserById({payload: {idUser}}: IFetchUser) {
     try {
-        yield put(StartActionGetUserOfPost())
+        yield put(StartActionUserOfPost())
         const payload: IUser = yield call(fetchUserById, idUser)
         setTimeout(async () => {
             console.log('Process going...')
         }, 500)
-        yield put(GetUserOfPostSuccess(payload))
+        yield put(ActionUserOfPostSuccess(payload))
     } catch (err: any) {
-        yield put(GetUserOfPostFailed(err?.message))
+        yield put(ActionUserOfPostFailed(err?.message))
     }
 }
 

@@ -1,52 +1,57 @@
-import { IUser } from "../../models/IUser";
-import {REQUEST_COMMENTS, REQUEST_USER_OF_POST, REQUEST_USER_OF_POST_FAILED, REQUEST_USER_OF_POST_SUCCESS} from "../types";
+import {IUser} from "../../models/IUser";
+import {
+    REQUEST_COMMENTS,
+    REQUEST_USER_OF_POST_FAILED,
+    REQUEST_USER_OF_POST_SUCCESS,
+    START_USER_OF_POST
+} from "../types";
 
-export interface IFetchUser {
+interface IStartActionUserOfPost {
     type: string,
-    payload: {
-      idUser: number
-    }
+    payload: boolean
 }
 
-interface ActionGetUserOfPost {
-   type: string,
-   payload: boolean
-}
-
-export const StartActionGetUserOfPost = (): ActionGetUserOfPost => {
+export const StartActionUserOfPost = (): IStartActionUserOfPost => {
    return {
-      type: REQUEST_USER_OF_POST,
-      payload: true
+        type: START_USER_OF_POST,
+       payload: true
    }
 }
 
-interface ActionUserOfPostFailed {
+interface IActionUserOfPostFailed {
    type: string,
    payload: string
 }
 
-export const GetUserOfPostFailed = (error: string): ActionUserOfPostFailed => {
+export const ActionUserOfPostFailed = (error: string): IActionUserOfPostFailed => {
    return {
       type: REQUEST_USER_OF_POST_FAILED,
       payload: error
    }
 }
 
-interface ActionUserOfPostSuccess {
+interface IActionUserOfPostSuccess {
    type: string,
    payload: IUser
 }
 
-export const GetUserOfPostSuccess = (user: IUser): ActionUserOfPostSuccess => {
+export const ActionUserOfPostSuccess = (user: IUser): IActionUserOfPostSuccess => {
    return {
       type: REQUEST_USER_OF_POST_SUCCESS,
       payload: user
    }
 }
 
-export type ActionsUserTypes = ActionGetUserOfPost | ActionUserOfPostFailed | ActionUserOfPostSuccess;
+export type TypesActionsUser = IStartActionUserOfPost | IActionUserOfPostFailed | IActionUserOfPostSuccess;
 
-export function fetchUser(idUser: number){
+export interface IFetchUser {
+    type: string,
+    payload: {
+        idUser: number
+    }
+}
+
+export function fetchUser(idUser: number): IFetchUser {
     return {
         type: REQUEST_COMMENTS,
         payload: {
