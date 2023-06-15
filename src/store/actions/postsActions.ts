@@ -1,19 +1,17 @@
 import IPost from "../../models/IPost";
 import {REQUEST_POSTS, REQUEST_POSTS_FAILED, REQUEST_POSTS_SUCCESS, START_POSTS} from "../types";
 
-interface IStartActionGetPosts {
-    type: string,
-    payload: boolean
- }
+export interface IStartActionGetPosts {
+    type: string
+}
 
 export const StartActionGetPosts = (): IStartActionGetPosts => {
     return {
-        type: START_POSTS,
-        payload: true
+        type: START_POSTS
     }
 }
  
- interface IActionGetPostsFailed {
+ export interface IActionGetPostsFailed {
    type: string,
    payload: string
  }
@@ -25,7 +23,7 @@ export const ActionGetPostFailed = (error: string): IActionGetPostsFailed => {
     }
 }
  
- interface IActionPostsSuccess {
+ export interface IActionPostsSuccess {
    type: string,
    payload: IPost[]
  }
@@ -36,11 +34,7 @@ export const ActionGetPostsSuccess = (posts: IPost[]): IActionPostsSuccess => {
         payload: posts
     }
 }
- 
-export type TypesActionsPosts = IStartActionGetPosts | IActionGetPostsFailed | IActionPostsSuccess;
 
-export function fetchPosts(){
-    return {
-        type: REQUEST_POSTS
-    }
-}
+export const fetchPosts = () => ({
+    type: REQUEST_POSTS
+})

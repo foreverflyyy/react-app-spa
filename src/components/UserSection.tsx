@@ -1,6 +1,4 @@
-import {useEffect} from 'react'
 import {useAppDispatch, useAppSelector} from '../hooks/hooks';
-import {fetchUser} from '../store/actions/userActions';
 import {useNavigate} from 'react-router-dom';
 
 interface UserSectionProps {
@@ -11,10 +9,6 @@ const UserSection = ({ userId }: UserSectionProps) => {
 
    const { user, isLoading, error } = useAppSelector(state => state.user);
    const dispatch = useAppDispatch();
-
-   useEffect(() => {
-      dispatch(fetchUser(userId));
-   }, [])
 
    const navigate = useNavigate();
 
@@ -30,7 +24,7 @@ const UserSection = ({ userId }: UserSectionProps) => {
          <h4
             onClick={handlerMoveToUser}
          >
-            {/*Author: {user?.name}*/}
+            Author:
          </h4>
       </div>
    )

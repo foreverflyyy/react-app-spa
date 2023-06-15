@@ -17,7 +17,7 @@ function* getUserById({payload: {idUser}}: IFetchUser) {
         yield put(StartActionUserOfPost())
         const payload: IUser = yield call(fetchUserById, idUser)
         setTimeout(async () => {
-            console.log('Process going...')
+            console.log('Process user going...')
         }, 500)
         yield put(ActionUserOfPostSuccess(payload))
     } catch (err: any) {

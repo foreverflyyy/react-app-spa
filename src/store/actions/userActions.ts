@@ -1,24 +1,22 @@
 import {IUser} from "../../models/IUser";
 import {
-    REQUEST_COMMENTS,
+    REQUEST_USER_OF_POST,
     REQUEST_USER_OF_POST_FAILED,
     REQUEST_USER_OF_POST_SUCCESS,
     START_USER_OF_POST
 } from "../types";
 
-interface IStartActionUserOfPost {
-    type: string,
-    payload: boolean
+export interface IStartActionUserOfPost {
+    type: string
 }
 
 export const StartActionUserOfPost = (): IStartActionUserOfPost => {
    return {
-        type: START_USER_OF_POST,
-       payload: true
+        type: START_USER_OF_POST
    }
 }
 
-interface IActionUserOfPostFailed {
+export interface IActionUserOfPostFailed {
    type: string,
    payload: string
 }
@@ -30,7 +28,7 @@ export const ActionUserOfPostFailed = (error: string): IActionUserOfPostFailed =
    }
 }
 
-interface IActionUserOfPostSuccess {
+export interface IActionUserOfPostSuccess {
    type: string,
    payload: IUser
 }
@@ -42,8 +40,6 @@ export const ActionUserOfPostSuccess = (user: IUser): IActionUserOfPostSuccess =
    }
 }
 
-export type TypesActionsUser = IStartActionUserOfPost | IActionUserOfPostFailed | IActionUserOfPostSuccess;
-
 export interface IFetchUser {
     type: string,
     payload: {
@@ -53,7 +49,7 @@ export interface IFetchUser {
 
 export function fetchUser(idUser: number): IFetchUser {
     return {
-        type: REQUEST_COMMENTS,
+        type: REQUEST_USER_OF_POST,
         payload: {
             idUser
         }

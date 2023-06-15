@@ -1,5 +1,5 @@
 import {IUser} from "../../models/IUser";
-import {TypesActionsUser} from "../actions/userActions";
+import {IActionUserOfPostFailed, IActionUserOfPostSuccess, IStartActionUserOfPost} from "../actions/userActions";
 import {REQUEST_COMMENTS_FAILED, REQUEST_COMMENTS_SUCCESS, START_USER_OF_POST} from "../types";
 
 interface IUserReducerState {
@@ -14,7 +14,9 @@ const initialState: IUserReducerState  = {
     error: ''
 }
 
-export const userReducer = (state = initialState, action: TypesActionsUser) => {
+type TypesActionsUser = IStartActionUserOfPost | IActionUserOfPostFailed | IActionUserOfPostSuccess;
+
+export const userReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case START_USER_OF_POST:
             return {
@@ -22,6 +24,7 @@ export const userReducer = (state = initialState, action: TypesActionsUser) => {
                isLoading: true
             };
          case REQUEST_COMMENTS_SUCCESS:
+             console.log('reducerfrrrr')
                return {
                   ...state, 
                   isLoading: false,

@@ -1,7 +1,8 @@
 import {call, put, takeEvery} from 'redux-saga/effects'
 import {REQUEST_POSTS} from "../types";
-import IPost from "../../models/IPost";
 import {ActionGetPostFailed, ActionGetPostsSuccess, StartActionGetPosts} from "../actions/postsActions";
+import axios, {AxiosResponse} from "axios";
+import IPost from "../../models/IPost";
 
 export function* sagaPostsWatcher() {
     yield takeEvery(REQUEST_POSTS, getPosts)
@@ -10,17 +11,15 @@ export function* sagaPostsWatcher() {
 function* getPosts() {
     try {
         yield put(StartActionGetPosts())
-        const payload: IPost[] = yield call(fetchPosts)
+        const payload: AxiosResponse= yield call(fetchPosts)
         setTimeout(async () => {
-            console.log('Process going...')
+            await console.log('processing get posts...')
         }, 500)
-        yield put(ActionGetPostsSuccess(payload))
+        yield put(ActionGetPostsSuccess(payload.data))
     } catch (e: any) {
         yield put(ActionGetPostFailed(e?.message))
     }
 }
 
-async function fetchPosts() {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=40`);
-    return await response.json()
-}
+const fetchPosts = () =>
+    axios.get<IPost[]>("https://jsonplaceholder.typicode.com/posts?_limit=40")
