@@ -1,5 +1,4 @@
 import IPost from "../../models/IPost";
-import {IActionGetPostsFailed, IActionPostsSuccess, IStartActionGetPosts} from "../actions/postsActions";
 import {REQUEST_POSTS_FAILED, REQUEST_POSTS_SUCCESS, START_POSTS} from "../types";
 
 interface IPostReducerState {
@@ -13,8 +12,6 @@ const initialState:IPostReducerState  = {
     isLoading: false,
     error: ''
 }
-
-type TypesActionsPosts = IActionPostsSuccess | IActionGetPostsFailed | IStartActionGetPosts;
 
 export const postsReducer = (state = initialState, action: any) => {
     switch (action.type) {

@@ -1,10 +1,11 @@
 import React from 'react';
+import Container from "react-bootstrap/Container";
 
 const AboutPage = () => {
     return (
-        <div>
+        <Container className="pt-5 d-flex justify-content-center" style={{ flexDirection: "column" }}>
             About
-        </div>
+        </Container>
     );
 };
 

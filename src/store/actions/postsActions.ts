@@ -5,16 +5,31 @@ export interface IStartActionGetPosts {
     type: string
 }
 
+export interface IActionGetPostsFailed {
+    type: string,
+    payload: string
+}
+
+export interface IActionPostsSuccess {
+    type: string,
+    payload: IPost[]
+}
+
+export type TypesActionsPosts = IActionPostsSuccess | IActionGetPostsFailed | IStartActionGetPosts;
+
+export interface IFetchPosts {
+    type: string,
+    payload: {
+        limit: number,
+        page: number
+    }
+}
+
 export const StartActionGetPosts = (): IStartActionGetPosts => {
     return {
         type: START_POSTS
     }
 }
- 
- export interface IActionGetPostsFailed {
-   type: string,
-   payload: string
- }
 
 export const ActionGetPostFailed = (error: string): IActionGetPostsFailed => {
     return {
@@ -22,24 +37,11 @@ export const ActionGetPostFailed = (error: string): IActionGetPostsFailed => {
         payload: error
     }
 }
- 
- export interface IActionPostsSuccess {
-   type: string,
-   payload: IPost[]
- }
 
 export const ActionGetPostsSuccess = (posts: IPost[]): IActionPostsSuccess => {
     return {
         type: REQUEST_POSTS_SUCCESS,
         payload: posts
-    }
-}
-
-export interface IFetchPosts {
-    type: string,
-    payload: {
-        limit: number,
-        page: number
     }
 }
 

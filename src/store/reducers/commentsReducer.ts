@@ -1,10 +1,5 @@
 import {REQUEST_COMMENTS_FAILED, REQUEST_COMMENTS_SUCCESS, START_COMMENTS_BY_POST} from "../types";
 import IComment from "../../models/IComment";
-import {
-    IActionCommentsByPostFailed,
-    IActionCommentsByPostSuccess,
-    IStartActionCommentsByPost
-} from "../actions/commentsActions";
 
 interface ICommentsReducerState {
     commentsByPost: IComment[],
@@ -17,8 +12,6 @@ const initialState: ICommentsReducerState = {
     isLoading: false,
     error: ''
 }
-
-type TypesActionsComments = IActionCommentsByPostSuccess | IStartActionCommentsByPost | IActionCommentsByPostFailed;
 
 export const commentsReducer = (state: ICommentsReducerState = initialState, action: any) => {
     switch (action.type) {
