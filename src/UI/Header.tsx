@@ -2,9 +2,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
 import {Link} from "react-router-dom";
+import {Image} from "react-bootstrap";
 
 function Header() {
     return (
@@ -19,9 +18,7 @@ function Header() {
                         placement="start"
                     >
                         <Offcanvas.Header closeButton>
-                            <Col xs={6} md={4}>
-                                <Image src="https://mdbootstrap.com/img/new/standard/city/041.webp" rounded fluid />
-                            </Col>
+                            <Image src="./myAvatar.png" rounded fluid />
                             <Offcanvas.Title id={`nameNavbarLabel-expand-xxl`}>
                                 Nikita
                             </Offcanvas.Title>

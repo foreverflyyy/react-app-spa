@@ -1,7 +1,8 @@
 import IPost from "../../models/IPost";
 import Card from 'react-bootstrap/Card';
 import SectionComments from "../comments/SectionComments";
-import UserSection from '../UserSection';
+import {Image} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 interface PostProps {
    post: IPost
@@ -13,11 +14,15 @@ const PostItem = ({ post }: PostProps) => {
          <Card.Header as="h5">Post {post.id}</Card.Header>
          <Card.Body>
             <Card.Title>
-               <UserSection userId={post.userId} />
-               Title: {post.title}</Card.Title>
-            <Card.Text>
-               {post.body}
-            </Card.Text>
+                <Link to={`/user/${post.userId}`} style={{paddingRight: 5}}>
+                    <Image style={{cursor: 'pointer'}} src="./userAvatar.jpg" rounded fluid />
+                </Link>
+               {post.title}
+            </Card.Title>
+             <div style={{fontSize: 18}}>Description:</div>
+             <Card.Text>
+                 {post.body}
+             </Card.Text>
             <Card.Footer>
                <SectionComments post={post} />
             </Card.Footer>
