@@ -21,7 +21,6 @@ const SectionComments = ({ post }: ListCommentsProps) => {
       if (!visibleComments){
          dispatch(fetchComments(post.id.toString()));
       }
-
       setVisibleComments(!visibleComments);
    }
 
@@ -53,10 +52,7 @@ const SectionComments = ({ post }: ListCommentsProps) => {
                    disabled={isLoading}
                    onClick={handlerGetComments}
                >
-                   {isLoading
-                       ? 'Loading…'
-                       : (!visibleComments ? 'Comments' : 'Hide')
-                   }
+                   {!visibleComments ? 'Comments' : 'Hide'}
                </Button>
            </div>
        </>

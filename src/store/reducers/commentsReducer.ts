@@ -17,8 +17,8 @@ export const commentsReducer = (state: ICommentsReducerState = initialState, act
     switch (action.type) {
          case START_COMMENTS_BY_POST:
             return {
-               ...state, 
-               isLoading: true 
+               ...state,
+               isLoading: true
             };
         case REQUEST_COMMENTS_SUCCESS:
             return {
