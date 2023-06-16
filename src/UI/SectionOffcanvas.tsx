@@ -26,7 +26,7 @@ const SectionOffcanvas = ({showMenu, changeShowMenu}: SectionOffcanvasProps) => 
             onHide={handleClose}
         >
             <Offcanvas.Header closeButton>
-                <Image src="./react-app-spa/myAvatar.png" rounded fluid />
+                <Image src="myAvatar.png" rounded fluid />
                 <Offcanvas.Title id={`nameNavbarLabel-expand-xxl`}>
                     Nikita
                 </Offcanvas.Title>
