@@ -25,10 +25,6 @@ const SectionComments = ({ post }: ListCommentsProps) => {
       setVisibleComments(!visibleComments);
    }
 
-   const handlerGetCommentsAgain = () => {
-      dispatch(fetchComments(post.id.toString()));
-   }
-
    useEffect(() => {
        if(commentsByPost[0]?.postId !== post.id){
            setVisibleComments(false);

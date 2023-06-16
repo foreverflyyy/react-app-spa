@@ -24,7 +24,7 @@ export const commentsReducer = (state: ICommentsReducerState = initialState, act
             return {
                ...state,
                 isLoading: false,
-                commentsByPost: state.commentsByPost = action.payload,
+                commentsByPost: action.payload,
             };
          case REQUEST_COMMENTS_FAILED:
             return {
