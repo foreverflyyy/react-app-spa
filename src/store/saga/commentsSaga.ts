@@ -1,4 +1,4 @@
-import {call, put, takeEvery} from "redux-saga/effects";
+import {call, delay, put, takeEvery} from "redux-saga/effects";
 import IComment from "../../models/IComment";
 import {REQUEST_COMMENTS} from "../types";
 import {
@@ -7,6 +7,7 @@ import {
     IFetchComments,
     StartActionCommentsByPost
 } from '../actions/commentsActions'
+import axios, {AxiosResponse} from "axios";
 
 export function* sagaCommentsWatcher() {
     yield takeEvery(REQUEST_COMMENTS, getComments)
@@ -15,17 +16,13 @@ export function* sagaCommentsWatcher() {
 function* getComments({payload: {idPost}}: IFetchComments) {
     try {
         yield put(StartActionCommentsByPost())
-        const payload: IComment[] = yield call(fetchComments, idPost)
-        setTimeout(async () => {
-            console.log('Process going...')
-        }, 500)
-        yield put(ActionCommentsByPostSuccess(payload))
+        const payload: AxiosResponse = yield call(fetchComments, idPost);
+        yield delay(500)
+        yield put(ActionCommentsByPostSuccess(payload.data));
     } catch (e: any) {
         yield put(ActionCommentsByPostFailed(e?.message))
     }
 }
 
-async function fetchComments(idPost: string) {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${idPost}`);
-    return await response.json();
-}
+const fetchComments = (idPost: string) =>
+    axios.get<IComment[]>(`https://jsonplaceholder.typicode.com/comments?postId=${idPost}`)

@@ -20,14 +20,16 @@ const initialState: ICommentsReducerState = {
 
 type TypesActionsComments = IActionCommentsByPostSuccess | IStartActionCommentsByPost | IActionCommentsByPostFailed;
 
-export const commentsReducer = (state = initialState, action: any) => {
+export const commentsReducer = (state: ICommentsReducerState = initialState, action: any) => {
     switch (action.type) {
          case START_COMMENTS_BY_POST:
             return {
                ...state, 
                isLoading: true 
             };
-         case REQUEST_COMMENTS_SUCCESS:
+        case REQUEST_COMMENTS_SUCCESS:
+             console.log(action)
+             console.log(state.commentsByPost)
             return {
                ...state,
                 isLoading: false,

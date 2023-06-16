@@ -1,4 +1,4 @@
-import {call, put, takeEvery} from 'redux-saga/effects'
+import {call, delay, put, takeEvery} from 'redux-saga/effects'
 import {REQUEST_POSTS} from "../types";
 import {ActionGetPostFailed, ActionGetPostsSuccess, StartActionGetPosts} from "../actions/postsActions";
 import axios, {AxiosResponse} from "axios";
@@ -12,9 +12,7 @@ function* getPosts() {
     try {
         yield put(StartActionGetPosts())
         const payload: AxiosResponse= yield call(fetchPosts)
-        setTimeout(async () => {
-            await console.log('processing get posts...')
-        }, 500)
+        yield delay(500)
         yield put(ActionGetPostsSuccess(payload.data))
     } catch (e: any) {
         yield put(ActionGetPostFailed(e?.message))

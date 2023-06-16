@@ -17,7 +17,6 @@ const initialState:IPostReducerState  = {
 type TypesActionsPosts = IActionPostsSuccess | IActionGetPostsFailed | IStartActionGetPosts;
 
 export const postsReducer = (state = initialState, action: any) => {
-    console.log(action)
     switch (action.type) {
       case START_POSTS:
             return {
@@ -25,6 +24,7 @@ export const postsReducer = (state = initialState, action: any) => {
                isLoading: true
             };
       case REQUEST_POSTS_SUCCESS:
+          console.log(action)
          return {
             ...state, 
             isLoading: false,

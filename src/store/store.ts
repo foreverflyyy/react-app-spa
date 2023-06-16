@@ -3,9 +3,9 @@ import {postsReducer} from "./reducers/postsReducer";
 import createSagaMiddleware from 'redux-saga'
 import {sagaPostsWatcher} from "./saga/postsSaga";
 import thunk from "redux-thunk";
-import {commentsReducer} from "./reducers/commentReducer";
+import {commentsReducer} from "./reducers/commentsReducer";
 import {sagaCommentsWatcher} from "./saga/commentsSaga";
-import { userReducer } from "./reducers/userReducer";
+import {userReducer} from "./reducers/userReducer";
 
 const sagaMiddleware = createSagaMiddleware()
 

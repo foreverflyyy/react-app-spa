@@ -1,4 +1,4 @@
-import {call, put, takeEvery} from "redux-saga/effects";
+import {call, delay, put, takeEvery} from "redux-saga/effects";
 import {REQUEST_USER_OF_POST} from "../types";
 import {IUser} from "../../models/IUser";
 import {
@@ -16,9 +16,7 @@ function* getUserById({payload: {idUser}}: IFetchUser) {
     try {
         yield put(StartActionUserOfPost())
         const payload: IUser = yield call(fetchUserById, idUser)
-        setTimeout(async () => {
-            console.log('Process user going...')
-        }, 500)
+        yield delay(500)
         yield put(ActionUserOfPostSuccess(payload))
     } catch (err: any) {
         yield put(ActionUserOfPostFailed(err?.message))

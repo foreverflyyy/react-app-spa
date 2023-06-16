@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import React, {useState} from 'react';
 import Button from "react-bootstrap/Button";
-import { fetchComments } from "../store/actions/commentsActions";
+import {fetchComments} from "../store/actions/commentsActions";
 import IPost from "../models/IPost";
-import { useAppDispatch, useAppSelector } from "../hooks/hooks";
-import ListComments from "./ListComments";
+import {useAppDispatch, useAppSelector} from "../hooks/hooks";
+import CommentItem from "./CommentItem";
+import IComment from "../models/IComment";
 
 interface ListCommentsProps {
    post: IPost
@@ -16,8 +17,9 @@ const SectionComments = ({ post }: ListCommentsProps) => {
    const dispatch = useAppDispatch();
 
    const handlerGetComments = () => {
-      if (!visibleComments)
+      if (!visibleComments){
          dispatch(fetchComments(post.id.toString()));
+      }
 
       setVisibleComments(!visibleComments);
    }
@@ -28,8 +30,17 @@ const SectionComments = ({ post }: ListCommentsProps) => {
 
    return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-         {visibleComments &&
-            <ListComments comments={commentsByPost} />
+         {(visibleComments && !isLoading) &&
+             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <h4>List of Comments: </h4>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                   {commentsByPost
+                       .filter((comment: IComment) => comment.postId === post.id)
+                       .map((comment: IComment) =>
+                           <CommentItem key={comment.id} comment={comment} />
+                       )}
+                </div>
+             </div>
          }
          <Button
             style={{ maxWidth: 150, fontSize: 18, marginTop: 10 }}
@@ -42,6 +53,7 @@ const SectionComments = ({ post }: ListCommentsProps) => {
                : (!visibleComments ? 'Comments' : 'Hide')
             }
          </Button>
+         <h2 onClick={() => console.log(commentsByPost[0])}>Check</h2>
       </div>
    );
 };
