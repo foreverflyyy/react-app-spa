@@ -1,9 +1,10 @@
 import React from 'react';
+import Spinner from 'react-bootstrap/Spinner';
 
 const Loader = () => {
    return (
-      <div>
-         Loader
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+          <Spinner animation="border" variant="secondary" />
       </div>
    );
 };
