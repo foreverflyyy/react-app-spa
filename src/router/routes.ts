@@ -6,7 +6,7 @@ import UserPage from "../pages/UserPage";
 export const publicRoutes: IRoute[] = [
     {path: '/', component: AboutPage},
     {path: '/posts', component: PostsPage},
-    {path: '/:id', component: UserPage},
+    {path: '/user/:id', component: UserPage},
     {path: '/about', component: AboutPage},
     {path: '/*', component: AboutPage}
 ];

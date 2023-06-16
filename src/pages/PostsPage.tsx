@@ -5,7 +5,7 @@ import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 import {usePosts} from "../hooks/usePosts";
 import {fetchPosts} from "../store/actions/postsActions";
 import Loader from "../UI/Loader";
-import SectionPagination from "../components/Pagination";
+import SectionPagination from "../UI/Pagination";
 import IFilter from "../models/IFilter";
 import PostsFilter from "../components/filter/PostsFilter";
 

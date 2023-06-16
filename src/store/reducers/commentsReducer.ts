@@ -21,8 +21,6 @@ export const commentsReducer = (state: ICommentsReducerState = initialState, act
                isLoading: true 
             };
         case REQUEST_COMMENTS_SUCCESS:
-             console.log(action)
-             console.log(state.commentsByPost)
             return {
                ...state,
                 isLoading: false,

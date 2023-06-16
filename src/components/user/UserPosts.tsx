@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {fetchUserPosts} from "../store/actions/user/userPostsActions";
-import {useAppDispatch, useAppSelector} from "../hooks/hooks";
-import PostsList from "./posts/PostsList";
-import Loader from "../UI/Loader";
+import {fetchUserPosts} from "../../store/actions/user/userPostsActions";
+import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
+import PostsList from "../posts/PostsList";
+import Loader from "../../UI/Loader";
 import Button from "react-bootstrap/Button";
 
 interface UserPostsProps{
@@ -23,7 +23,7 @@ const UserPosts = ({userId}: UserPostsProps) => {
         return (
             <Button
                 style={{maxWidth: 300, fontSize: 18}}
-                variant="secondary"
+                variant="outline-dark"
                 onClick={handlerLoadPosts}>
                 Load Posts
             </Button>

@@ -21,7 +21,6 @@ export const postsReducer = (state = initialState, action: any) => {
                isLoading: true
             };
       case REQUEST_POSTS_SUCCESS:
-          console.log(action)
          return {
             ...state, 
             isLoading: false,

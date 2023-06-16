@@ -21,7 +21,6 @@ export const userOfPostReducer = (state = initialState, action: any) => {
                isLoading: true
             };
          case REQUEST_USER_OF_POST_SUCCESS:
-             console.log(action)
                return {
                   ...state, 
                   isLoading: false,

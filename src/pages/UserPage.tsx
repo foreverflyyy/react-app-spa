@@ -2,10 +2,11 @@ import React, {useEffect} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 import Loader from "../UI/Loader";
-import Button from 'react-bootstrap/Button';
 import Container from "react-bootstrap/Container";
 import {fetchUserOfPost} from "../store/actions/user/userOfPostActions";
-import UserPosts from "../components/UserPosts";
+import UserPosts from "../components/user/UserPosts";
+import UserInfo from "../components/user/UserInfo";
+import Button from "react-bootstrap/Button";
 
 const UserPage = () => {
 
@@ -26,19 +27,15 @@ const UserPage = () => {
         return <Loader/>
 
     return (
-        <Container className="pt-5 d-flex justify-content-center" style={{ flexDirection: "column" }}>
-            <div style={{display: 'flex', justifyContent: 'space-around'}}>
-                <h2>User #{user.id}</h2>
-                <Button
-                    style={{minWidth: 100, fontSize: 18}}
-                    variant="secondary"
-                    onClick={handlerBack}>
-                    Back
-                </Button>
-            </div>
-            <div>
-                Info about user:
-            </div>
+        <Container className="pt-5 d-flex justify-content-center" style={{ flexDirection: "column"}}>
+            <Button
+                style={{maxWidth: 60, fontSize: 18}}
+                variant="outline-dark"
+                onClick={handlerBack}>
+                Back
+            </Button>
+            <h2 style={{textAlign: 'center', paddingBottom: 5}}>User #{user.id}</h2>
+            <UserInfo user={user} handlerBack={handlerBack}/>
             <UserPosts userId={user.id}/>
         </Container>
     );

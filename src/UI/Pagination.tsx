@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useState} from 'react';
 import Pagination from "react-bootstrap/Pagination";
 
 interface PaginationProps {
@@ -8,10 +8,12 @@ interface PaginationProps {
 
 const SectionPagination = ({ page, changePage }: PaginationProps) => {
 
+    const [totalPage, setTotalPage] = useState(10);
+
     let pagesArray = useMemo(() => {
         let items = [];
 
-        for (let number = 1; number <= 5; number++) {
+        for (let number = 1; number <= totalPage; number++) {
             items.push(
                 <Pagination.Item
                     key={number}
