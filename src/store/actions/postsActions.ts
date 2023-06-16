@@ -35,6 +35,18 @@ export const ActionGetPostsSuccess = (posts: IPost[]): IActionPostsSuccess => {
     }
 }
 
-export const fetchPosts = () => ({
-    type: REQUEST_POSTS
+export interface IFetchPosts {
+    type: string,
+    payload: {
+        limit: number,
+        page: number
+    }
+}
+
+export const fetchPosts = (limit: number, page: number): IFetchPosts => ({
+    type: REQUEST_POSTS,
+    payload: {
+        limit,
+        page
+    }
 })

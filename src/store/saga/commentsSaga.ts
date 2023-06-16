@@ -24,5 +24,10 @@ function* getComments({payload: {idPost}}: IFetchComments) {
     }
 }
 
-const fetchComments = (idPost: string) =>
-    axios.get<IComment[]>(`https://jsonplaceholder.typicode.com/comments?postId=${idPost}`)
+const fetchComments = (idPost: string) => {
+    return axios.get<IComment[]>("https://jsonplaceholder.typicode.com/comments", {
+        params: {
+            postId: idPost
+        }
+    });
+}

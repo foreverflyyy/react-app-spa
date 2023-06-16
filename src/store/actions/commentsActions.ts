@@ -46,7 +46,7 @@ export interface IFetchComments {
     }
 }
 
-export function fetchComments(idPost: string){
+export function fetchComments(idPost: string): IFetchComments{
    return {
        type: REQUEST_COMMENTS,
        payload: {

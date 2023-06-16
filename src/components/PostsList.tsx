@@ -1,21 +1,44 @@
 import PostItem from "./PostItem";
-import IPost from '../models/IPost';
+import {useAppDispatch, useAppSelector} from "../hooks/hooks";
+import {useEffect, useState} from "react";
+import {fetchPosts} from "../store/actions/postsActions";
+import Loader from "../UI/Loader";
+import IPost from "../models/IPost";
+import SectionPagination from "./Pagination";
 
 interface PostsListProps {
-   posts: IPost[];
    searchLine: string
 }
 
-const PostsList = ({ searchLine, posts }: PostsListProps) => {
+const PostsList = ({ searchLine }: PostsListProps) => {
+
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(10);
+    const [totalPages, setTotalPages] = useState(100);
+
+    const { posts, isLoading, error } = useAppSelector(state => state.posts);
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        console.log(page)
+        dispatch(fetchPosts(limit, page))
+    }, [page]);
+
+    if(isLoading)
+        return <Loader />
 
    return (
-      <div>
-         <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {posts?.map(post =>
-               <PostItem key={post.id} post={post} />
-            )}
-         </div>
-      </div>
+      <>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {posts.map((post: IPost) =>
+                <PostItem key={post.id} post={post}/>)
+            }
+            <SectionPagination
+                page={page}
+                changePage={(p) => setPage(p)}
+            />
+        </div>
+      </>
    );
 };
 
