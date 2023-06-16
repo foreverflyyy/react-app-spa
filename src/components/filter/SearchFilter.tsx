@@ -1,22 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import Row from "react-bootstrap/Row";
+import React from 'react';
 import Form from "react-bootstrap/Form";
-import InputGroup from 'react-bootstrap/InputGroup';
-import useDebounce from "../hooks/useDebounce";
+import Row from "react-bootstrap/Row";
+import InputGroup from "react-bootstrap/InputGroup";
 
-interface SearchFormProps {
-    searchByTitle: (value: string) => void;
+interface SearchFilterProps {
+    textSearch: string,
+    changeTextSearch: (val: string) => void,
 }
-
-const SearchForm = ({ searchByTitle }: SearchFormProps) => {
-    const [textSearch, setTextSearch] = useState('');
-    const debounced = useDebounce(textSearch);
-
-    useEffect(() => {
-        if(debounced)
-            searchByTitle(debounced);
-    }, [debounced])
-
+const SearchFilter = ({textSearch, changeTextSearch}: SearchFilterProps) => {
     return (
         <Form>
             <Row className="mb-3">
@@ -30,13 +21,14 @@ const SearchForm = ({ searchByTitle }: SearchFormProps) => {
                             placeholder="Search..."
                             aria-describedby="inputGroup-sizing-sm"
                             value={textSearch}
-                            onChange={e => setTextSearch(e.target.value)}
+                            onChange={e => changeTextSearch(e.target.value)}
                         />
                     </InputGroup>
                 </Form.Group>
             </Row>
         </Form>
+
     );
 };
 
-export default SearchForm;
+export default SearchFilter;

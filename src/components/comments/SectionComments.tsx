@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import Button from "react-bootstrap/Button";
-import {fetchComments} from "../store/actions/commentsActions";
-import IPost from "../models/IPost";
-import {useAppDispatch, useAppSelector} from "../hooks/hooks";
+import {fetchComments} from "../../store/actions/commentsActions";
+import IPost from "../../models/IPost";
+import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import CommentItem from "./CommentItem";
-import IComment from "../models/IComment";
+import IComment from "../../models/IComment";
 
 interface ListCommentsProps {
    post: IPost
@@ -58,7 +58,6 @@ const SectionComments = ({ post }: ListCommentsProps) => {
                        : (!visibleComments ? 'Comments' : 'Hide')
                    }
                </Button>
-               <h2 onClick={() => console.log(commentsByPost)}>Check</h2>
            </div>
        </>
    );

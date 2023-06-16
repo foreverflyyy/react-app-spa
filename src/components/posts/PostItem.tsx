@@ -1,7 +1,7 @@
-import IPost from "../models/IPost";
+import IPost from "../../models/IPost";
 import Card from 'react-bootstrap/Card';
-import SectionComments from "./SectionComments";
-import UserSection from './UserSection';
+import SectionComments from "../comments/SectionComments";
+import UserSection from '../UserSection';
 
 interface PostProps {
    post: IPost
