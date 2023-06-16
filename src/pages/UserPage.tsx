@@ -7,6 +7,7 @@ import {fetchUserOfPost} from "../store/actions/user/userOfPostActions";
 import UserPosts from "../components/user/UserPosts";
 import UserInfo from "../components/user/UserInfo";
 import Button from "react-bootstrap/Button";
+import Error from "../UI/Error";
 
 const UserPage = () => {
 
@@ -25,6 +26,9 @@ const UserPage = () => {
 
     if(isLoading || !user)
         return <Loader/>
+
+    if(error)
+        return <Error>Something went wrong when loading the user...</Error>
 
     return (
         <Container className="pt-5 d-flex justify-content-center" style={{ flexDirection: "column"}}>

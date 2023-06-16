@@ -5,6 +5,7 @@ import IPost from "../../models/IPost";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import CommentItem from "./CommentItem";
 import IComment from "../../models/IComment";
+import Error from "../../UI/Error";
 
 interface ListCommentsProps {
    post: IPost
@@ -33,6 +34,9 @@ const SectionComments = ({ post }: ListCommentsProps) => {
            setVisibleComments(false);
        }
    }, [commentsByPost])
+
+    if(error)
+        return <Error>Something went wrong when loading the comments...</Error>
 
    return (
        <>

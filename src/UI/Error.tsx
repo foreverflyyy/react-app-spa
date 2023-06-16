@@ -1,13 +1,14 @@
 import React from 'react';
+import '../style/error.css'
 
 interface ErrorProps {
-    error: string
+    children: React.ReactNode
 }
 
-const Error = ({error}: ErrorProps) => {
+const Error = ({children}: ErrorProps) => {
     return (
-        <div style={{color: 'red', fontSize: 20, fontWeight: 'bold', }}>
-            {error}
+        <div className={'error'}>
+            {children}
         </div>
     );
 };

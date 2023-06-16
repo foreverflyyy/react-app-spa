@@ -4,6 +4,7 @@ import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import PostsList from "../posts/PostsList";
 import Loader from "../../UI/Loader";
 import Button from "react-bootstrap/Button";
+import Error from "../../UI/Error";
 
 interface UserPostsProps{
     userId: number
@@ -29,6 +30,9 @@ const UserPosts = ({userId}: UserPostsProps) => {
             </Button>
         )
     }
+
+    if(error)
+        return <Error>Something went wrong when loading the posts...</Error>
 
     if(isLoading || !userPosts)
         return <Loader/>

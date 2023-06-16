@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/Container";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import PostsList from "../components/posts/PostsList";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 import {usePosts} from "../hooks/usePosts";
@@ -8,6 +8,7 @@ import Loader from "../UI/Loader";
 import SectionPagination from "../UI/Pagination";
 import IFilter from "../models/IFilter";
 import PostsFilter from "../components/filter/PostsFilter";
+import Error from "../UI/Error";
 
 const PostsPage = () => {
 
@@ -27,6 +28,9 @@ const PostsPage = () => {
    const searchByTitle = (valueSearchLine: string) => {
        setFilter({...filter, query: valueSearchLine});
    }
+
+    if(error)
+        return <Error>Something went wrong when loading the posts...</Error>
 
    return (
       <Container className="pt-5 d-flex justify-content-center" style={{ flexDirection: "column" }}>
