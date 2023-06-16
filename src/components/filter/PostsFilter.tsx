@@ -22,7 +22,10 @@ const PostsFilter = ({ filter, changeFilter }: SearchFormProps) => {
     return (
         <>
             <SearchFilter changeTextSearch={setTextSearch} textSearch={textSearch}/>
-            <SelectFilter/>
+            <SelectFilter
+                select={filter.sort}
+                changeSelect={selectedSort => changeFilter({...filter, sort: selectedSort})}
+            />
         </>
 
     );
