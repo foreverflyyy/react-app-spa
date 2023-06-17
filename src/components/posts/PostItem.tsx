@@ -15,7 +15,7 @@ const PostItem = ({ post }: PostProps) => {
          <Card.Body>
             <Card.Title>
                 <Link to={`/user/${post.userId}`} style={{paddingRight: 5}}>
-                    <Image style={{cursor: 'pointer'}} src="userAvatar.jpg" rounded fluid />
+                    <Image style={{cursor: 'pointer'}} src="https://i.ibb.co/7CY4XYH/user-Avatar.jpg" rounded fluid />
                 </Link>
                {post.title}
             </Card.Title>
